@@ -1,0 +1,80 @@
+{
+  "name": "electron-bug-report",
+  "version": "1.0.0",
+  "description": "message box",
+  "main": "build/main.js",
+  "author": "go mars",
+  "license": "ISC",
+  "scripts": {
+    "build": "tsc",
+    "cleanbuild": "rimraf build && npm run build",
+    "watch": "tsc -w",
+    "dev": "nodemon",
+    "postinstall": "electron-builder install-app-deps",
+    "start": "npm run build && electron --inspect ./build/main.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist:mac": "electron-builder -m",
+    "dist:win": "electron-builder -w --x64",
+    "dist:win32": "electron-builder -w --ia32",
+    "dist:all": "electron-builder -mwl"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^7.1.6",
+    "electron-builder": "^22.2.0",
+    "nodemon": "^2.0.2",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.3"
+  },
+  "__build_doc": "https://www.electron.build/configuration",
+  "__linux_category_ref": "https://www.electron.build/configuration/linux",
+  "build": {
+    "appId": "com.mn.fox",
+    "productName": "bug-report",
+    "copyright": "Copyright © 2019 ${author}",
+    "directories": {
+      "buildResources": "resources",
+      "output": "dist/${os}_${arch}"
+    },
+    "mac": {
+      "category": "public.app-category.business",
+      "target": [
+        "dmg"
+      ],
+      "darkModeSupport": false
+    },
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "snap"
+      ],
+      "category": "Office"
+    },
+
+    "appImage": {},
+    "snap": {},
+    "files": [
+      "build/**",
+      "resources/**",
+      "!**/dist/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
+    ]
+  }
+}
